@@ -60,7 +60,7 @@ echo "Repo Root       : $SCRIPT_DIR"
 echo "Configuration   : $BUILD_CONFIGURATION"
 echo "**********************************************************************"
 echo ""
-dotnet build "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.sln" -c $BUILD_CONFIGURATION
+dotnet build "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.sln" -c $BUILD_CONFIGURATION $RESTORE_INTERACTIVE
 result=$?
 if [ $result -ne 0 ]; then
     Error
@@ -71,7 +71,7 @@ echo "----------------------------------------------------------------------"
 echo "Build Virtual Client Extensions: linux-x64"
 echo "----------------------------------------------------------------------"
 echo ""
-dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r linux-x64 -c $BUILD_CONFIGURATION $PUBLISH_FLAGS
+dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r linux-x64 -c $BUILD_CONFIGURATION --self-contained -p:InvariantGlobalization=true $RESTORE_INTERACTIVE
 result=$?
 if [ $result -ne 0 ]; then
     Error
@@ -82,7 +82,7 @@ echo "----------------------------------------------------------------------"
 echo "Build Virtual Client Extensions: linux-arm64"
 echo "----------------------------------------------------------------------"
 echo ""
-dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r linux-arm64 -c $BUILD_CONFIGURATION $PUBLISH_FLAGS
+dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r linux-arm64 -c $BUILD_CONFIGURATION --self-contained -p:InvariantGlobalization=true $RESTORE_INTERACTIVE
 result=$?
 if [ $result -ne 0 ]; then
     Error
@@ -93,7 +93,7 @@ echo "----------------------------------------------------------------------"
 echo "Build Virtual Client Extensions: win-x64"
 echo "----------------------------------------------------------------------"
 echo ""
-dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r win-x64 -c $BUILD_CONFIGURATION $PUBLISH_FLAGS
+dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r win-x64 -c $BUILD_CONFIGURATION --self-contained $RESTORE_INTERACTIVE
 result=$?
 if [ $result -ne 0 ]; then
     Error
@@ -104,7 +104,7 @@ echo "----------------------------------------------------------------------"
 echo "Build Virtual Client Extensions: win-arm64"
 echo "----------------------------------------------------------------------"
 echo ""
-dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r win-arm64 -c $BUILD_CONFIGURATION $PUBLISH_FLAGS
+dotnet publish "$SCRIPT_DIR/src/VirtualClient.Extensions/VirtualClient.Extensions.Packaging/VirtualClient.Extensions.Packaging.csproj" -r win-arm64 -c $BUILD_CONFIGURATION --self-contained $RESTORE_INTERACTIVE
 result=$?
 if [ $result -ne 0 ]; then
     Error
