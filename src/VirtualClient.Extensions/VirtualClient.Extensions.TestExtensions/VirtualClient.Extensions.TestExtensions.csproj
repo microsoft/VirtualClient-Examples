@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>Example.VirtualClient.Extensions.TestExtensions</AssemblyName>
+        <RootNamespace>VirtualClient.Extensions</RootNamespace>
+        <NoWarn>CA2214,CS1591,SA1508</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Global package dependency versions are defined in the Module.props for the solution. -->
+        <PackageReference Include="AutoFixture" Version="$(AutoFixture_PackageVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(Microsoft_NET_Test_Sdk_PackageVersion)" />
+        <PackageReference Include="Moq" Version="$(Moq_PackageVersion)" />
+        <PackageReference Include="NUnit" Version="$(NUnit_PackageVersion)" />
+        <PackageReference Include="VirtualClient.TestFramework" Version="$(VirtualClient_PackageVersion)" />
+    </ItemGroup>
+
+    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Module.props))\Module.props" />
+
+</Project>

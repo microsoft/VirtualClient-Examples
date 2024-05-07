@@ -1,0 +1,34 @@
+﻿{
+    "Description": "Example of a profile that executes custom monitors/monitoring on the system.",
+    "MinimumExecutionInterval": "00:00:05",
+    "Parameters": {
+        "ProfilingEnabled": false,
+        "ProfilingMode": "None"
+    },
+    "Monitors": [
+        {
+            "Type": "ExampleProfilingMonitor",
+            "Parameters": {
+                "Scenario": "ProfileSystem",
+                "PackageName": "exampleworkload",
+                "ProfilingEnabled": "$.Parameters.ProfilingEnabled",
+                "ProfilingMode": "$.Parameters.ProfilingMode",
+                "ProfilingPeriod": "00:00:30",
+                "ProfilingInterval": "00:01:00",
+                "ProfilingWarmupPeriod": "00:00:00"
+            }
+        }
+    ],
+    "Dependencies": [
+        {
+            "Type": "DependencyPackageInstallation",
+            "Parameters": {
+                "Scenario": "InstallExampleWorkloadPackage",
+                "BlobContainer": "packages",
+                "BlobName": "exampleworkload.1.0.0.zip",
+                "PackageName": "exampleworkload",
+                "Extract": true
+            }
+        }
+    ]
+}

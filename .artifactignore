@@ -1,0 +1,12 @@
+# This file is used to define the artifact folders and files that will be published to the
+# package stores (e.g. CloudVault, Reddog). This file is copied to the build output directory
+# during build, so the paths below are relative to that /out folder.
+
+# Exclude everything in the /out folder from publishing except the folders that contain
+# NuGet or Pilotfish packages (note: backslash makes it work on windows-based agents).
+**/*
+!/packages/**
+!\packages/**
+
+!/deployment/**
+!\deployment/**

@@ -1,0 +1,11 @@
+ {
+   "instanceUrl"        :  "https://msazure.visualstudio.com",
+   "projectName"        :  "One",
+   "areaPath"           :  "One\\CRC\\Virtual Client",
+   "iterationPath"      :  "One\\Custom\\CRC\\Future",
+   "repositoryName"     :  "CRC-VirtualClient-Examples",
+   "notificationAliases":  [
+                             "brdeyo@microsoft.com",
+                             "yang.pan@microsoft.com"
+                           ]
+ }

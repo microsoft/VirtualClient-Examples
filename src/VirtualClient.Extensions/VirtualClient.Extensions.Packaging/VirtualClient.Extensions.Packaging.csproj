@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>Example.VirtualClient.Extensions.Packaging</AssemblyName>
+        <RootNamespace>VirtualClient.Extensions</RootNamespace>
+        <NoWarn>NU1602,NU1604,NU5050,NU5100,NU5104,NU5110,NU5111,NU5118,NU5128,NU5131</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\VirtualClient.Extensions.Actions\VirtualClient.Extensions.Actions.csproj" />
+        <ProjectReference Include="..\VirtualClient.Extensions.Monitors\VirtualClient.Extensions.Monitors.csproj" />
+    </ItemGroup>
+
+    <!-- 
+    Copy the workload and monitor profiles from the repo into the target runtime publish directory.
+    -->
+    <Target Name="CopyProfilesToPublishDirectory" AfterTargets="Publish">
+        <Message Importance="high" Text="RuntimeIdentifier = $(RuntimeIdentifier)" />
+
+        <ItemGroup>
+            <ProfileFiles Include="..\VirtualClient.Extensions.Packaging\profiles\**\*.json" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(ProfileFiles)" DestinationFiles="@(ProfileFiles->'$(OutputPath)publish\profiles\%(Filename)%(Extension)')" />
+    </Target>
+
+    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Module.props))\Module.props" />
+
+    <PropertyGroup>
+        <!--
+        NuGet Integration:
+        Properties that are passed into the .nuspec files (e.g. abc.virtualclient.extensions.nuspec)
+        in order to create NuGet packages.
+        -->
+        <RepoDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Repo.props))</RepoDir>
+        <RepoOutDir>$(RepoDir)\out</RepoOutDir>
+        <ProjectDir>$(RepoDir)\src\VirtualClient.Extensions\VirtualClient.Extensions.Packaging</ProjectDir>
+        <NuspecBasePath>$(OutputPath)$(TargetFramework)</NuspecBasePath>
+        <NuspecProperties>BinConfigDir=$(RepoOutDir)\bin\$(Configuration);ProjectDir=$(ProjectDir);ToolsOutDir=$(RepoOutDir)\tools</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);PackageVersion=$(AssemblyVersion);VirtualClient_Framework_Version=$(VirtualClient_PackageVersion)</NuspecProperties>
+       
+    </PropertyGroup>
+
+    <Target Name="ShowBuildVersion" BeforeTargets="CoreClean">
+        <Message Text=" " Importance="high" />
+        <Message Text="Build Version: $(AssemblyVersion)" Importance="high" />
+        <Message Text="VC Open Source Version: $(VirtualClient_Framework_PackageVersion)" Importance="high" />
+        <Message Text=" " Importance="high" />
+    </Target>
+    
+</Project>

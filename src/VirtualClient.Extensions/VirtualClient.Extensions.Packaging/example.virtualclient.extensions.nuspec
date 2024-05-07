@@ -1,0 +1,81 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>example.virtualclient.extensions</id>
+        <version>$PackageVersion$</version>
+        <title>Example.VirtualClient.Extensions</title>
+        <description>Virtual Client action, monitor and dependencies extensions examples.</description>
+        <authors>Microsoft</authors>
+
+        <dependencies>
+            <group targetFramework=".net8.0">
+                <dependency id="VirtualClient.Framework" version="$VirtualClient_Framework_Version$" exclude="Build,Analyzers" />
+            </group>
+        </dependencies>
+    </metadata>
+
+    <files>
+        <!-- 
+        MSBuild Properties
+        The following properties are defined in the packaging project <NuSpecProperties> element
+        for reference in the various .nuspec files:
+
+        - BinDir
+          The path to the 'bin' directory in the repo 'out' folder (e.g. /repo/out/bin).
+         
+        - BinConfigDir
+          The path to the build configuration directory in the 'bin' directory (e.g. /repo/out/bin/Debug).
+          
+        - PackagingSourceDir
+          The directory to the/this project where the .nuspec files are contained.
+         
+        - ToolsOutDir
+          The directory in the build 'out' directory where the external/3rd party tools exist and from
+          which NuGet packages are created (e.g. /repo/out/tools).
+        -->
+
+        <!-- 
+        Package Definition
+        =============================================================================================
+        -->
+        <file src="$ProjectDir$\example.virtualclient.extensions.vcpkg" target="." />
+
+        <!-- 
+        win-x64
+        =============================================================================================
+        -->
+        <file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\win-x64\publish\profiles\*.*" target="win-x64\profiles" />
+        <file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\win-x64\publish\Example.VirtualClient*.dll" target="win-x64" />
+        <file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\win-x64\publish\Example.VirtualClient*.pdb" target="win-x64" />
+
+        <!--
+        Example of extra binaries that we need to include with the VC extensions binaries. This is a scenario
+        that is possible as teams are creating extensions for VC. These teams may use libaries/.dlls that are not a
+        part of the .NET framework nor the VC framework.
+        -->
+        <!-- file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\win-x64\publish\Moq.dll" target="win-x64" / -->
+
+        <!-- 
+        win-arm64
+        =============================================================================================
+        -->
+        <file src="$BinConfigDir$\ARM64\VirtualClient.Extensions.Packaging\net8.0\win-arm64\publish\profiles\*.*" target="win-arm64\profiles" />
+        <file src="$BinConfigDir$\ARM64\VirtualClient.Extensions.Packaging\net8.0\win-arm64\publish\Example.VirtualClient*.dll" target="win-arm64" />
+        <file src="$BinConfigDir$\ARM64\VirtualClient.Extensions.Packaging\net8.0\win-arm64\publish\Example.VirtualClient*.pdb" target="win-arm64" />
+
+        <!-- 
+        linux-x64
+        =============================================================================================
+        -->
+        <file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\linux-x64\publish\profiles\*.*" target="linux-x64\profiles" />
+        <file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\linux-x64\publish\Example.VirtualClient*.dll" target="linux-x64" />
+        <file src="$BinConfigDir$\x64\VirtualClient.Extensions.Packaging\net8.0\linux-x64\publish\Example.VirtualClient*.pdb" target="linux-x64" />
+
+        <!-- 
+        linux-arm64
+        =============================================================================================
+        -->
+        <file src="$BinConfigDir$\ARM64\VirtualClient.Extensions.Packaging\net8.0\linux-arm64\publish\profiles\*.*" target="linux-arm64\profiles" />
+        <file src="$BinConfigDir$\ARM64\VirtualClient.Extensions.Packaging\net8.0\linux-arm64\publish\Example.VirtualClient*.dll" target="linux-arm64" />
+        <file src="$BinConfigDir$\ARM64\VirtualClient.Extensions.Packaging\net8.0\linux-arm64\publish\Example.VirtualClient*.pdb" target="linux-arm64" />
+    </files>
+</package>

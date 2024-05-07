@@ -1,0 +1,8 @@
+﻿{
+    "name": "crc.virtualclient.extensions",
+    "description": "CRC team example extensions to the Virtual Client runtime platform.",
+    "version": "1.0.0",
+    "metadata": {
+        "extensions":  true
+    }
+}

@@ -20,7 +20,6 @@
 x64/
 x86/
 bld/
-[Oo]ut/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
@@ -156,7 +155,6 @@ publish/
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
-profile.arm.json
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
@@ -291,26 +289,3 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-/src/Juno/Juno.Scheduler/GoalHelper.cs
-
-# dependencies
-/node_modules
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-Tools/
-/src/Juno/Juno.Execution.Api.WebAppHost/Properties/ServiceDependencies

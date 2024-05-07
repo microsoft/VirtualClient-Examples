@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>Example.VirtualClient.Extensions.Actions</AssemblyName>
+        <RootNamespace>VirtualClient.Extensions</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="VirtualClient.Framework" Version="$(VirtualClient_PackageVersion)" />
+    </ItemGroup>
+
+    <!--
+    The Module.props connects the project to the repo-wide build environment settings. See 'Working in CRC Repos' link 
+    in the README for the repo for more information on repo build structure, settings and mechanics. 
+    -->
+    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Module.props))\Module.props" />
+</Project>

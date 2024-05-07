@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <!--
+    *****************************************************************************
+    Set the module name and root path properties.
+    *****************************************************************************
+    -->
+    <PropertyGroup>
+        <ModuleName>$([MSBuild]::MakeRelative($([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Repo.props)), $(MSBuildThisFileDirectory)).TrimEnd('\'))</ModuleName>
+        <ModulePath>$(MSBuildThisFileDirectory)</ModulePath>
+        <Platforms>AnyCPU;x64;ARM64</Platforms>
+        <NoWarn>$(NoWarn);CA2007</NoWarn>
+    </PropertyGroup>
+	
+	    <!--
+    ******************************************************************************
+    
+    Adding AssemblyVersion in every project. 
+    
+    *****************************************************************************
+    -->
+    <PropertyGroup>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+        <AssemblyVersion Condition="'$(VCBuildVersion)' != ''">$(VCBuildVersion)</AssemblyVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!--
+        The following properties define versions of NuGet dependency packages that are used across the solution projects. By 
+        putting these here it helps to consolidate the work required to upversion dependencies across the common base. We intend to use
+        the same versions of a specific package across the board as a general rule. 
+        -->
+
+        <!-- VirtualClient.Framework -->
+        <!-- VirtualClient.TestFramework -->
+        <!--
+             IMPORTANT
+             To use the extensions developed in this repo, the version of the Virtual Client runtime
+             platform used to execute a profile MUST be a version that is >= the version defined for the
+             extensions projects (when compiled).
+             
+             e.g.
+             Extensions if versioned as 1.14.6 can be used with VC runtime platform >= 1.14.6
+        -->
+        <VirtualClient_PackageVersion>1.14.16-beta</VirtualClient_PackageVersion>
+        
+        <!-- AutoFixture -->
+        <AutoFixture_PackageVersion>4.17.0</AutoFixture_PackageVersion>
+
+        <!-- Microsoft.NET.Test.Sdk -->
+        <Microsoft_NET_Test_Sdk_PackageVersion>17.0.0</Microsoft_NET_Test_Sdk_PackageVersion>
+
+        <!-- Moq -->
+        <Moq_PackageVersion>4.18.2</Moq_PackageVersion>
+
+        <!-- NUnit -->
+        <NUnit_PackageVersion>3.13.2</NUnit_PackageVersion>
+
+        <!-- NUnit3TestAdapter -->
+        <NUnit3TestAdapter_PackageVersion>4.2.1</NUnit3TestAdapter_PackageVersion>
+
+    </PropertyGroup>
+
+    <!--
+    *****************************************************************************
+    Import the build environment settings.  These settings define the paths that 
+    will be used during build/compilation 
+    
+    (e.g. bin/output path, intermediates path, NuGet package cache path).
+    *****************************************************************************
+    -->
+    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Repo.props))\Repo.props" />
+    <Import Project="$(ModulePath)\CodeQuality.targets" />
+    <Import Project="$(BuildEnvToolsetsPath)\Documentation.targets" />
+
+</Project>

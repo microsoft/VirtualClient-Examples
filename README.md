@@ -1,33 +1,70 @@
-# Project
+---
+ArtifactType: nupkg, executable, azure-web-app, azure-cloud-service
+Documentation: URL
+Language: csharp, powershell, markdown
+Platform: windows, linux, azure-function, azure-app-service
+Stackoverflow: URL
+Tags: Cloud Readiness Criteria,CRC,Juno,Virtual Client
+ms.reviewedAt: 11/3/2019
+ms.reviewedBy: brdeyo
+---
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+# Cloud Readiness Certified (CRC)
+This repo is owned and managed by the Cloud Readiness Certified (CRC) team under the CHIE organization.
+For information please contact [crc_fte@microsoft.com](mailto:crc_fte@microsoft.com).
 
-As the maintainer of this project, please make a few updates:
+This repo includes the following team projects:
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+* #### Virtual Client Extensions Examples
+  The projects in this solution showcase examples of how to create action, monitor and dependency handler extensions to
+  the Virtual Client platform.
 
-## Contributing
+## Getting Started
+The following documentation provides insight into how CRC Git repos are structured and how to work within them.
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+* [Working in CRC Repos](https://msazure.visualstudio.com/One/_git/CSI-CRC-BuildEnv?path=%2FREADME.md&version=GBmaster&_a=preview)
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+<div style="font-size:10pt">
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+```
+# Examples
+# Ensure you have the latest build environment files
+S:\one\repo> init.cmd
 
-## Trademarks
+# Clean output/artifact directories
+S:\one\repo> clean.cmd
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+# Restore NuGet packages
+S:\one\repo> build-restore.cmd
+
+# Build all solutions/projects in the repo.
+S:\one\repo> build.cmd
+
+# Run all unit + functional tests for projects in the repo. Note that tests MUST have a [Category("Unit")] or [Category("Functional")] 
+# attribute at the top of the test class in order to be run.
+S:\one\repo> build-test.cmd
+```
+</div>
+
+## Building Virtual Client Extensions Packages
+The projects in this repo are used as dependencies for projects in other repos. The CRC team uses NuGet toolsets to create packages 
+for sharing/integrating Virtual Client extensions. To build extensions packages for the projects the following commands are used to 
+simplify this process and for automated build integration.
+
+| Command                                          | Description                       |
+| :----------------------------------------------- | :-------------------------------- |
+| build-packages.cmd                               | Builds extension packages for all of the projects in the repo using the package version provided. |
+
+<div style="font-size:10pt">
+
+```
+# Examples
+# Perform each of the build steps noted above for the repo
+
+# Then build packages. Note that packages are output to the 'repo\out\packages' directory.
+S:\one\repo> build-packages.cmd 1.2.3
+
+# Produces:
+S:\one\repo\out\packages\crc.vc.extensions.1.2.3.zip
+```
+</div>

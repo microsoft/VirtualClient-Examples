@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <!-- 
+        <IsPackable>false</IsPackable>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+        <RunAnalyzers>false</RunAnalyzers>
+        -->
+        <AssemblyName>Example.VirtualClient.Extensions.Actions.UnitTests</AssemblyName>
+        <RootNamespace>VirtualClient.Extensions</RootNamespace>
+        <NoWarn>AsyncFixer02,SA1005,SA1116,SA1120</NoWarn>
+        <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture" Version="$(AutoFixture_PackageVersion)" />
+        <PackageReference Include="Moq" Version="$(Moq_PackageVersion)" />
+        <PackageReference Include="NUnit" Version="$(NUnit_PackageVersion)" />
+        <PackageReference Include="NUnit3TestAdapter" Version="$(NUnit3TestAdapter_PackageVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(Microsoft_NET_Test_Sdk_PackageVersion)" />
+        <PackageReference Include="VirtualClient.TestFramework" Version="$(VirtualClient_PackageVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VirtualClient.Extensions.Actions\VirtualClient.Extensions.Actions.csproj" />
+      <ProjectReference Include="..\VirtualClient.Extensions.TestExtensions\VirtualClient.Extensions.TestExtensions.csproj" />
+    </ItemGroup>
+
+    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Module.props))\Module.props" />
+
+</Project>
